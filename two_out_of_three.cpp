@@ -11,7 +11,7 @@ public:
             {
                if(hashmap.find(nums[i]) != hashmap.end())
                {
-                 hashmap[nums[i]] = i;
+                 hashmap[nums[i]] = 1;
                }
                 else{
                     continue;
@@ -26,7 +26,7 @@ public:
                 //Insert element if not in hashmap already
                if(hashmap.find(nums[i]) != hashmap.end())
                {
-                 hashmap[nums[i]] = i;
+                 hashmap[nums[i]] = 1;
                }
                else{
                     cout<<nums[i]<<endl;
