@@ -42,6 +42,9 @@ public:
         map <int, int> hashmap;
       
         vector<vector<int>>::iterator it = nums.begin();
+        
+        //nums.end() will return a reference to a pointer that is beyond the last element of a vector nums.
+        //It is a theoretical construct, which cannot be dereferenced. 
         while(it != nums.end())
         {
           result = populateResult(*it, result, hashmap, K);
