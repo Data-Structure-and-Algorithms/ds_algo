@@ -1,3 +1,3 @@
 # ds_algo
 
-My code at solving Leetcode problems.
+My attempt at solving Leetcode problems.
