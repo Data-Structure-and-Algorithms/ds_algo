@@ -1,66 +1,47 @@
 class Solution {
 public:
     
-    vector<int> insertToHashMap(vector <int>&nums, bool flag)
-    {
-        static vector <int> output;
-        static map<int, int> hashmap;
-        if(flag == false)
-        {
-            for(int i=0;i<nums.size();++i)
+    vector <int> populateResult(vector<int> &input, vector<int> &output,
+                                   map<int,int> &hashmap)
+    {   
+ 
+            map<int, bool> temp_map;
+            for(int idx=0; idx<input.size(); ++idx)
             {
-               if(hashmap.find(nums[i]) != hashmap.end())
-               {
-                 hashmap[nums[i]] = 1;
-               }
+                if(temp_map.find(input[idx]) == temp_map.end())
+                {
+                   temp_map[input[idx]] = true; 
+                    
+                  if(hashmap.find(input[idx]) == hashmap.end())
+                {
+                    hashmap[input[idx]] = 1;
+                }
                 else{
-                    continue;
-                    }
-            }
-        }
-        
-        else if(flag == true)
-        {
-            for(int i=0;i<nums.size();++i)
-            {
-                //Insert element if not in hashmap already
-               if(hashmap.find(nums[i]) != hashmap.end())
-               {
-                 hashmap[nums[i]] = 1;
-               }
-               else{
-                    cout<<nums[i]<<endl;
-                    hashmap[nums[i]]++;
-                    if(hashmap[nums[i]]>2)
+                    hashmap[input[idx]]++;
+                    
+                    if(hashmap[input[idx]] == 2)
                     {
-                        continue;
+                        output.push_back(input[idx]);
                     }
-                    output.push_back(nums[i]);
-                    }
-            }
+                   
+                }
+                }
+                
+               
         }
-        return output;
+        return output;    
     }
+       
+
     
     vector<int> twoOutOfThree(vector<int>& nums1, vector<int>& nums2, vector<int>& nums3) {
         
-        static vector<int> result;
+        vector <int> result; 
+        map <int, int> hashmap;
+        result = populateResult(nums1, result, hashmap);
+        result = populateResult(nums2, result, hashmap);
+        result = populateResult(nums3, result, hashmap);
         
-        bool flag;
-        result = insertToHashMap(nums1, flag=false);
-        result = insertToHashMap(nums2, flag=true);
-        result = insertToHashMap(nums3, flag=true);
-        
-        /*
-        map<int, int>::iterator it = hashmap.begin();
-        while (it != hashmap.end())
-        {
-            if((it->second)>1)
-            {
-                result.push_back(it->first);
-            }
-        }
-        */
-       return result; 
+        return result;
     }
 };
